@@ -1,5 +1,5 @@
 import { Router } from "express";
-import analyticsRoutes from "../api/v1.0/analytics.routes";
+import analyticsRoutes from "../api/v1.0/social-media/analytics.routes";
 
 const router = Router();
 
