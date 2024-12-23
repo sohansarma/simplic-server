@@ -1,4 +1,4 @@
-import ToDo from "../../models/tasks/toDo.scheme";
+import ToDo from "../../models/tasks/toDo.model";
 
 class ToDoDao {
   async createToDo() {

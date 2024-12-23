@@ -4,5 +4,5 @@ import { formatResponse } from "../../utils/helper";
 
 export async function fetch(request: Request, response: Response) {
   const result: any = await new AnalyticsManager(request).fetch();
-  return response.status(200).json(formatResponse(200, null, result, null));
+  return response.status(200).json(formatResponse(200, null, result));
 }

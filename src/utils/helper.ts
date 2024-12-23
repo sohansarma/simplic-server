@@ -1,31 +1,29 @@
 import { isEmpty } from "lodash";
 import { STATUS_CODES } from "http";
 
+interface ErrorObject {
+  messages: string[];
+}
+
 export const formatResponse = function (
   status = 500,
-  err: any = "",
-  data: any[] = [],
-  errors: any = [],
-  evOp: any = null
+  err: any = {},
+  data = [],
+  errors: ErrorObject[] = [],
+  evOp = null
 ) {
   try {
     !status.toString().startsWith("2") &&
       !isEmpty(err) &&
       typeof err.split === "function" &&
-      err.split(",").forEach((e: string) => {
+      err.split(",").forEach((e: any) => {
         !isEmpty(e) &&
           errors &&
           typeof errors.push === "function" &&
           errors.push({
-            // field: [],
-            // location: '',
             messages: [e.trim()],
           });
       });
-    if (evOp && evOp.errors) {
-      evOp.errors.concat(...errors);
-      return evOp;
-    }
     return {
       status,
       statusText: STATUS_CODES[status],
